@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prosper Washaya | Personal Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables for theming */
+        :root {
+            --primary: #2d46b9;
+            --primary-light: #3f5ae0;
+            --secondary: #6c8fff;
+            --dark: #1a1a2e;
+            --light: #f5f5f7;
+            --text: #333;
+            --text-light: #888;
+            --shadow: 0 8px 30px rgba(0,0,0,0.08);
+            --background: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            --border-radius: 12px;
+            --glow: 0 0 15px rgba(45, 70, 185, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="dark"] {
+            --primary: #4f67d6;
+            --primary-light: #5a73e8;
+            --secondary: #8ba5ff;
+            --dark: #f5f5f7;
+            --light: #1a1a2e;
+            --text: #f0f0f0;
+            --text-light: #aaa;
+            --shadow: 0 8px 30px rgba(0,0,0,0.2);
+            --background: #121212;
+            --card-bg: rgba(30, 30, 40, 0.9);
+            --glow: 0 0 15px rgba(79, 103, 214, 0.3);
+            --glass-bg: rgba(30, 30, 40, 0.8);
+            --glass-border: rgba(79, 103, 214, 0.2);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition);
+            background-image: 
+                radial-gradient(circle at 5% 10%, rgba(108,143,255,0.05) 0%, transparent 70%),
+                radial-gradient(circle at 95% 90%, rgba(45,70,185,0.05) 0%, transparent 70%);
+            background-attachment: fixed;
+            scroll-behavior: smooth;
+        }
+
+        body.dark-mode {
+            --primary: #4f67d6;
+            --text: #f0f0f0;
+            --background: #121212;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--space-sm);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            letter-spacing: -1px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--glow);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-md);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: var(--space-sm);
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-light);
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            object-fit: cover;
+            display: block;
+        }
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        section {
+            padding: var(--space-lg) 0;
+            position: relative;
+        }
+
+        .section-divider {
+            height: 150px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .section-divider svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            fill: var(--background);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--space-md);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: var(--space-md);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(45, 70, 185, 0.2);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 70, 185, 0.3);
+            color: white;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Header Styles */
+        .header {
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        [data-theme="dark"] .header {
+            background: rgba(18, 18, 18, 0.8);
+        }
+
+        .header.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary);
+            position: relative;
+            letter-spacing: -0.5px;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 30%;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: var(--space-md);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .mode-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: var(--space-md);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .mode-toggle:hover {
+            background: rgba(108, 143, 255, 0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(108, 143, 255, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80vw;
+            height: 80vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(108,143,255,0.1) 0%, rgba(45,70,185,0.02) 70%, rgba(255,255,255,0) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-sm);
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: var(--space-md);
+            color: var(--text-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light);
+            color: var(--dark);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            background: var(--gradient);
+            color: white;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 45%;
+            box-shadow: var(--shadow);
+            opacity: 0.9;
+            animation: float 6s ease-in-out infinite;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(-50%) translateX(0) rotate(0deg); }
+            50% { transform: translateY(-52%) translateX(5px) rotate(1deg); }
+            100% { transform: translateY(-50%) translateX(0) rotate(0deg); }
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-image img {
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 400px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 70%;
+            height: 70%;
+            background: var(--gradient);
+            z-index: -1;
+            border-radius: var(--border-radius);
+            opacity: 0.5;
+        }
+
+        .about-content .btn {
+            margin-top: var(--space-sm);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background: var(--gradient);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50px;
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            margin-bottom: var(--space-md);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: var(--gradient);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+            box-shadow: var(--glow);
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::after {
+            right: -12.5px;
+        }
+
+        .right::after {
+            left: -12.5px;
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .timeline-role {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .timeline-company {
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--space-md);
+        }
+
+        .skill-category {
+            margin-bottom: var(--space-md);
+        }
+
+        .skill-category-title {
+            margin-bottom: var(--space-sm);
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-item {
+            padding: 8px 15px;
+            background: var(--light);
+            color: var(--dark);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .skill-item {
+            background: #2a2a3c;
+            color: #f5f5f7; /* Explicitly set to light color for better contrast */
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            background: var(--gradient);
+            color: white;
+        }
+
+        /* Publications Section */
+        .publications-section {
+            background: linear-gradient(180deg, var(--background) 0%, rgba(108,143,255,0.05) 100%);
+            padding-bottom: var(--space-lg);
+        }
+
+        .publications-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+        }
+
+        .publication-card {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: var(--space-md);
+            position: relative;
+            overflow: hidden;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            padding: var(--space-md);
+        }
+
+        .publication-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .publication-content {
+            padding-right: var(--space-md);
+        }
+
+        .publication-year {
+            display: inline-block;
+            padding: 3px 10px;
+            background: var(--light);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        [data-theme="dark"] .publication-year {
+            background: #2a2a3c;
+        }
+
+        .publication-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text);
+            position: relative;
+            display: inline-block;
+        }
+
+        .publication-journal {
+            font-style: italic;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .publication-authors {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .publication-figures {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .publication-figure {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+        }
+
+        .publication-figure img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .publication-card:hover .publication-figure img {
+            transform: scale(1.05);
+        }
+
+        .figure-caption {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 8px;
+            padding: 0 10px;
+        }
+
+        .publication-doi {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-top: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: rgba(108,143,255,0.1);
+            transition: var(--transition);
+        }
+
+        .publication-doi:hover {
+            background: rgba(108,143,255,0.2);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-md);
+        }
+
+        .project-card {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+            position: relative;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image::after {
+            opacity: 1;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: var(--space-sm);
+        }
+
+        .project-tag {
+            font-size: 0.8rem;
+            background: var(--light);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 50px;
+        }
+
+        [data-theme="dark"] .project-tag {
+            background: #2a2a3c;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: var(--space-sm);
+        }
+
+        .project-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Hobbies Section */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--space-md);
+        }
+
+        .hobby-card {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hobby-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108,143,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: var(--transition);
+        }
+
+        .hobby-card:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hobby-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: var(--space-sm);
+            transition: var(--transition);
+        }
+
+        .hobby-card:hover .hobby-icon {
+            transform: translateY(-5px);
+            color: var(--secondary);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-md);
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .form-input,
+        .form-textarea {
+            padding: 12px 15px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            background: var(--light);
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .form-input,
+        [data-theme="dark"] .form-textarea {
+            background: #2a2a3c;
+            border-color: rgba(255,255,255,0.1);
+            color: var(--text);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(45, 70, 185, 0.2);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .contact-info-item:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: var(--glow);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(45, 70, 185, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--light);
+            padding: var(--space-md) 0;
+            text-align: center;
+            margin-top: var(--space-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+        }
+
+        [data-theme="dark"] .footer {
+            background: #1a1a2e;
+        }
+
+        .footer-text {
+            margin-bottom: var(--space-sm);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image Instructions */
+        .image-instructions {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(45, 70, 185, 0.9);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            border-radius: 0 0 5px 0;
+            z-index: 2;
+            display: none;
+        }
+
+        .show-instructions .image-instructions {
+            display: block;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-image {
+                max-width: 40%;
+            }
+            
+            .about-grid,
+            .contact-grid,
+            .publication-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+                margin-bottom: var(--space-md);
+            }
+            
+            .timeline::after {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 20px;
+            }
+            
+            .left::after, .right::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0;
+            }
+
+            .publication-content {
+                padding-right: 0;
+                margin-bottom: var(--space-md);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-list {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--background);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transform: translateY(-100%);
+                transition: transform 0.5s ease;
+                z-index: 100;
+            }
+            
+            .nav-list.active {
+                transform: translateY(0);
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+                z-index: 101;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .project-image {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 0 var(--space-sm);
+            }
+            
+            .skills-grid,
+            .projects-grid,
+            .hobbies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">Prosper Washaya</a>
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#publications" class="nav-link">Publications</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in">Prosper Washaya</h1>
+                <p class="hero-subtitle fade-in">MSc.</p>
+                <p class="hero-description fade-in">
+                    I'm a PhD student who looks at pictures of Earth taken from space (you know, those cool satellite shots). I use them to check out what's happening with our forests and the climate—like whether trees are disappearing or the weather's getting wilder. I've got some neat tools and a bunch of info to play with, and my trick is turning all that nerdy stuff into something you'd actually enjoy hearing about. No complicated science degree or nap required—I promise it'll make sense and keep you awake!
+                </p>
+                <div class="fade-in">
+                    <a href="#contact" class="btn">Get in Touch</a>
+                    <a href="#projects" class="btn btn-outline" style="margin-left: 15px;">View Projects</a>
+                </div>
+                <div class="social-links fade-in">
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="show-instructions">
+                <div class="image-instructions">Profile Image: 600x600px, professional headshot recommended</div>
+                <img src="images/profile.jpg" alt="Prosper Washaya" class="hero-image fade-in">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="fade-in">About Me</h2>
+            <div class="about-grid">
+                <div class="about-content fade-in">
+                    <p>
+                        Current Research: My work centers on understanding forest disturbances, such as insect outbreaks, by integrating satellite imagery with ground-based data. This fusion helps reveal critical patterns and their implications for ecosystem resilience—a bit like detective work, powered by cutting-edge technology.
+                    </p>
+                    <p>
+                        My Passion: I'm driven by the challenge of transforming complex geospatial data into clear, actionable insights. Whether through research, teaching, or developing tools, I strive to make science not only accessible but also impactful, bridging the gap between technical findings and real-world applications.
+                    </p>
+                    <p>
+                        My Background and Approach: With experience spanning property management to advanced radar data analysis, I bring a diverse perspective to my work. I value precision but never lose sight of the broader context. My approach is rooted in curiosity, practicality, and a commitment to quality—often with a nod to Python for bringing ideas to life.
+                        
+                    </p>
+                    <p>
+                        Future Goals: Looking ahead, I'm focused on advancing research and tools that support sustainable decision-making. My aim is to leverage geospatial insights to address pressing environmental challenges, ensuring science serves society effectively.
+                    </p>
+                    <p>
+                        That's me in a nutshell—professional, purpose-driven, and always ready to connect over a shared interest in technology, ecosystems, or the view from space.
+                    </p>
+                    <a href="#" class="btn">Download Resume</a>
+                </div>
+                <div class="about-image fade-in show-instructions">
+                    <div class="image-instructions">About Image: 500x400px, action shot or workspace image</div>
+                    <img src="images/about.jpg" alt="About Prosper Washaya">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2 class="fade-in">Professional & Academic Experience</h2>
+            <div class="timeline">
+                <!-- Experience 1 -->
+                <div class="timeline-item left fade-in">
+                    <div class="card">
+                        <div class="timeline-date">2021 - Present</div>
+                        <h3 class="timeline-role">Ph.D Candidate/ Researcher</h3>
+                        <div class="timeline-company">Czech University of Life Science, Prague</div>
+                        <p>
+                            Applied Geoinformatics and Remote Sensing. Thesis title: Forest disturbance mapping by integrating heterogeneous remote sensing and
+ground data
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Experience 2 -->
+                <div class="timeline-item right fade-in">
+                    <div class="card">
+                        <div class="timeline-date">2018 - 2021</div>
+                        <h3 class="timeline-role">Remote Sensing Analyst</h3>
+                        <div class="timeline-company">Deqing iSpatial, China</div>
+                        <p>
+                            Processed and analyzed Synthetic Aperture Radar (SAR) data to monitor surface deformation, generating detailed reports to support decision-making and risk assessment.
+Conducted optical data analysis for agricultural monitoring, identifying trends in crop health and land use to inform sustainable practices.
+Leveraged advanced geospatial tools and techniques to deliver accurate, actionable insights for diverse stakeholders.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Experience 3 -->
+                <div class="timeline-item left fade-in">
+                    <div class="card">
+                        <div class="timeline-date">2016 - 2018</div>
+                        <h3 class="timeline-role">M.Sc. Student</h3>
+                        <div class="timeline-company">Wuhan University,Wuhan</div>
+                        <p>
+                            Photogrammetry and Remote Sensing.Thesis title: SAR Coherence Change Detection in Urban Areas affected by disasters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="fade-in">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <!-- Technical Skills -->
+                <div class="card fade-in">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Technical Skills</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">SAR analysis (coherence, backscatter, change detection)</span>
+                            <span class="skill-item">Optical remote sensing (NDVI, NDWI, NBR, etc.)</span>
+                            <span class="skill-item">Machine learning and AI for remote sensing</span>
+                            <span class="skill-item">Custom Python package development for SAR workflows</span>
+                            <span class="skill-item">Statistical analysis and model evaluation</span>
+                            <span class="skill-item">Time series analysis of satellite data</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Professional Skills -->
+                <div class="card fade-in">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Professional Skills</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Scientific research and peer-reviewed publishing</span>
+                            <span class="skill-item">Translating complex geospatial data into actionable insights</span>
+                            <span class="skill-item">Interdisciplinary communication (bridging science and broader audiences)</span>
+                            <span class="skill-item">Teaching and training in remote sensing and GIS</span>
+                            <span class="skill-item">Project management (academic and industry settings)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools & Technologies -->
+                <div class="card fade-in">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Tools & Technologies</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Programming: Python</span>
+                            <span class="skill-item">Jupyter Notebooks</span>
+                            <span class="skill-item">Google Earth Engine</span>
+                            <span class="skill-item">QGIS, SNAP (ESA), ArcGIS</span>
+                            <span class="skill-item">Git/GitHub</span>
+                            <span class="skill-item">SQL</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Languages -->
+                <div class="card fade-in">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Languages</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">English</span>
+                            <span class="skill-item">Shona</span>
+                            <span class="skill-item">Chinese Mandarin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="publications-section" id="publications">
+        <div class="container">
+            <h2 class="fade-in">Publications</h2>
+            <div class="publications-grid">
+                <!-- Publication 1 -->
+                <div class="publication-card fade-in">
+                    <div class="publication-content">
+                        <span class="publication-year">2025</span>
+                        <h3 class="publication-title">Landscape-scale forest recovery dynamics following an unprecedented bark beetle outbreak in Central Europe</h3>
+                        <p class="publication-journal">TBD</p>
+                        <p class="publication-authors">Washaya, P., Modlinger, R., Potterf, M., ………  Hlásny, T.*</p>
+                        <p>The study uses optical and SAR remote sensing, to post-2018 bark beetle disturbance and recovery across a 9,000 km² Central European landscape, revealing 32% forest loss, persistent bare soil, and complex regeneration dynamics with a XX% net annual recovery rate by 2024.</p>
+                        <a href="#" class="publication-doi"><i class="fas fa-external-link-alt"></i> DOI: TBA</a>
+                    </div>
+                    <div class="publication-figures">
+                        <div class="publication-figure show-instructions">
+                            <div class="image-instructions">Publication Figure: 400x300px, figure from your paper</div>
+                            <img src="images/pub1-fig.jpg" alt="Forest recovery figure">
+                            <p class="figure-caption">Figure 1: Spatial distribution of forest recovery rates across the study area (2018-2024).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 2 -->
+                <div class="publication-card fade-in">
+                    <div class="publication-content">
+                        <span class="publication-year">2024</span>
+                        <h3 class="publication-title">Patterns and impacts of an unprecedented outbreak of bark beetles in Central Europe: A glimpse into the future?</h3>
+                        <p class="publication-journal">Forest Ecosystems</p>
+                        <p class="publication-authors">Washaya, P., Modlinger, R., Tyser, D., Hlásny, T.*</p>
+                        <p>The study maps the 2016–2022 spruce bark beetle outbreak in the Czech Republic using optical and SAR satellite imagery, revealing seven major outbreak foci, a 38% forest cover loss across 9,000 km², and shifting disturbance dynamics from new mortality spots to short-range expansion, with significant forest fragmentation by 2022.</p>
+                        <a href="#" class="publication-doi"><i class="fas fa-external-link-alt"></i> DOI: https://doi.org/10.1016/j.fecs.2024.100243</a>
+                    </div>
+                    <div class="publication-figures">
+                        <div class="publication-figure show-instructions">
+                            <div class="image-instructions">Publication Figure: 400x300px, figure from your paper</div>
+                            <img src="images/pub2-fig.jpg" alt="Bark beetle outbreak map">
+                            <p class="figure-caption">Figure 2: Spatial and temporal dynamics of bark beetle outbreak in Czech Republic (2016-2022).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 3 -->
+                <div class="publication-card fade-in">
+                    <div class="publication-content">
+                        <span class="publication-year">2018</span>
+                        <h3 class="publication-title">Coherence Change-Detection with Sentinel-1 for Natural and Anthropogenic Disaster Monitoring in Urban Areas</h3>
+                        <p class="publication-journal">Remote Sensing</p>
+                        <p class="publication-authors">Washaya, P., Balz, T., Mohammadi, B</p>
+                        <p>This study leverages weather-independent Sentinel-1 SAR data and Coherence Change-Detection to monitor disaster impacts across Syria, Puerto Rico, California, and Iran, revealing significant coherence loss and building damage in street blocks post-disaster, with high standard deviation indicating localized effects.</p>
+                        <a href="#" class="publication-doi"><i class="fas fa-external-link-alt"></i> DOI: https://doi.org/10.3390/rs10071026</a>
+                    </div>
+                    <div class="publication-figures">
+                        <div class="publication-figure show-instructions">
+                            <div class="image-instructions">Publication Figure: 400x300px, figure from your paper</div>
+                            <img src="images/pub3-fig.jpg" alt="Coherence change detection">
+                            <p class="figure-caption">Figure 3: SAR coherence change detection showing urban damage patterns following disaster events.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="fade-in">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="card project-card fade-in">
+                    <div class="project-image show-instructions">
+                        <div class="image-instructions">Project Image: 400x250px, high-quality visual of project results</div>
+                        <img src="images/project1.jpg" alt="Forest Disturbance Mapping Tool">
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Remote Sensing</span>
+                        <span class="project-tag">Forest Analysis</span>
+                        <span class="project-tag">Python</span>
+                    </div>
+                    <h3>Forest Disturbance Mapping Tool</h3>
+                    <p>A Python-based toolset for automatically detecting and classifying forest disturbances using multi-temporal satellite imagery. Incorporates machine learning models for improved accuracy.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <i class="fas fa-link"></i> View Project
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="card project-card fade-in">
+                    <div class="project-image show-instructions">
+                        <div class="image-instructions">Project Image: 400x250px, high-quality visual of project results</div>
+                        <img src="images/project2.jpg" alt="SAR Coherence Analysis Platform">
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">SAR Analysis</span>
+                        <span class="project-tag">Time Series</span>
+                    </div>
+                    <h3>SAR Coherence Analysis Platform</h3>
+                    <p>Web-based platform for processing and analyzing SAR coherence data for disaster monitoring and environmental change detection. Includes visualization tools and automated reporting.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <i class="fas fa-link"></i> Live Demo
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="card project-card fade-in">
+                    <div class="project-image show-instructions">
+                        <div class="image-instructions">Project Image: 400x250px, high-quality visual of project results</div>
+                        <img src="images/project3.jpg" alt="Earth Observation Data Fusion Framework">
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Google Earth Engine</span>
+                        <span class="project-tag">Data Fusion</span>
+                        <span class="project-tag">Visualization</span>
+                    </div>
+                    <h3>Earth Observation Data Fusion Framework</h3>
+                    <p>A comprehensive framework for integrating data from multiple satellite sensors for enhanced environmental monitoring. Leverages Google Earth Engine for scalable processing.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <i class="fas fa-link"></i> Live Demo
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section class="hobbies" id="hobbies">
+        <div class="container">
+            <h2 class="fade-in">Hobbies & Interests</h2>
+            <div class="hobbies-grid">
+                <!-- Hobby 1 -->
+                <div class="glass-card hobby-card fade-in">
+                    <div class="hobby-icon">
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                    <h3>Outdoor Exploration</h3>
+                    <p>My research interest in forests naturally extends to personal enjoyment of hiking and nature photography. These activities provide fresh perspectives and inspiration for my scientific work.</p>
+                </div>
+                
+                <!-- Hobby 2 -->
+                <div class="glass-card hobby-card fade-in">
+                    <div class="hobby-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Programming</h3>
+                    <p>Beyond professional applications, I enjoy coding personal projects and contributing to open-source tools. This creative outlet helps me develop new skills while solving interesting problems.</p>
+                </div>
+                
+                <!-- Hobby 3 -->
+                <div class="glass-card hobby-card fade-in">
+                    <div class="hobby-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Reading</h3>
+                    <p>I'm an avid reader of both scientific literature and non-fiction, particularly books on environmental topics, technology trends, and cultural perspectives that inform my interdisciplinary approach.</p>
+                </div>
+                
+                <!-- Hobby 4 -->
+                <div class="glass-card hobby-card fade-in">
+                    <div class="hobby-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Language Learning</h3>
+                    <p>After developing proficiency in Mandarin during my time in China, I've continued exploring new languages as a way to understand different cultures and communication patterns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="fade-in">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="glass-card fade-in">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-textarea" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="glass-card fade-in">
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3>Email</h3>
+                                <p>pwashaya9@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3>Phone</h3>
+                                <p>+420607459658</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Location</h3>
+                                <p>Prague, Czech Republic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2025 Prosper Washaya. All rights reserved.</p>
+            <div class="social-links" style="justify-content: center;">
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation active state and smooth scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all sections
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const backToTop = document.querySelector('.back-to-top');
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        document.querySelector('.nav-list').classList.remove('active');
+                        document.querySelector('.mobile-menu-btn i').classList.replace('fa-times', 'fa-bars');
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Intersection Observer for active nav links
+            const observerOptions = {
+                rootMargin: '-100px 0px -80% 0px'
+            };
+            
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const activeId = entry.target.id;
+                        setActiveNavLink(activeId);
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            function setActiveNavLink(id) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navList = document.querySelector('.nav-list');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navList.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-bars')) {
+                    icon.classList.replace('fa-bars', 'fa-times');
+                } else {
+                    icon.classList.replace('fa-times', 'fa-bars');
+                }
+            });
+            
+            // Header Scroll Effect
+            const header = document.querySelector('.header');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                    backToTop.classList.add('visible');
+                } else {
+                    header.classList.remove('scrolled');
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            // Fade In Animation
+            const fadeElems = document.querySelectorAll('.fade-in');
+            
+            const fadeObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElems.forEach(elem => {
+                fadeObserver.observe(elem);
+            });
+
+            // Dark/Light Mode Toggle
+            const modeToggle = document.querySelector('.mode-toggle');
+            const htmlElement = document.documentElement;
+            
+            // Check for saved theme preference or prefer-color-scheme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                htmlElement.setAttribute('data-theme', savedTheme);
+                updateModeToggleIcon(savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                htmlElement.setAttribute('data-theme', 'dark');
+                updateModeToggleIcon('dark');
+            }
+            
+            modeToggle.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme') || 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                htmlElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateModeToggleIcon(newTheme);
+            });
+            
+            function updateModeToggleIcon(theme) {
+                const icon = modeToggle.querySelector('i');
+                if (theme === 'dark') {
+                    icon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    icon.classList.replace('fa-sun', 'fa-moon');
+                }
+            }
+            
+            // Contact Form Submission (you would add AJAX or form handling here)
+            const contactForm = document.querySelector('.contact-form');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Here you would typically handle the form submission via AJAX
+                // For this template, we'll just show an alert
+                alert('Thanks for your message! This is a template form. In a real website, this would send your message to the site owner.');
+            });
+
+            // Toggle image instructions
+            const showInstructions = document.querySelectorAll('.show-instructions');
+            
+            function toggleInstructions() {
+                // Remove the class after 5 seconds
+                setTimeout(() => {
+                    showInstructions.forEach(el => {
+                        el.classList.remove('show-instructions');
+                    });
+                }, 5000);
+            }
+            
+            // Call the function when the page loads
+            toggleInstructions();
+        });
+    </script>
+</body>
+</html>
